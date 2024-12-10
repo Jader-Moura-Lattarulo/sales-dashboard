@@ -5,11 +5,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login/>} />
-        <Route path="/cadastro" element={<Registration/>} />
-        <Route path="/home" element={<Home/>} />
-        <Route path="/leads" element={<Leads/>} />
-        <Route path="/perfil" element={<Profile/>} />
+        <Route path="/" element={<Login />} />
+        <Route path="/cadastro" element={<Registration />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/leads" element={<Leads />} />
+        <Route path="/perfil" element={<Profile />} />
       </Routes>
     </Router>
   )
