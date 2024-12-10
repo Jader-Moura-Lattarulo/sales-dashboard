@@ -8,7 +8,7 @@ const LoginImage = styled.div`
   background-image: url(/login-image.svg);
   background-size: cover;
   height: 100vh;
-  widows: 50vh;
+  width: 50vh;
 `
 
 function Login() {
