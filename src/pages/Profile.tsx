@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { CardComponent, Header, StyledButton } from "@/components"
-import { AppThemeContext } from "@/contexts/AppThemeContext"
+import { AppThemeContext } from "../contexts/AppThemeContext"
 
 function Profile() {
   const themeContext = useContext(AppThemeContext)
