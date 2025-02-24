@@ -8,7 +8,7 @@ export const lightTheme: Theme = {
   appSkeletonFrom: '#EEE',
   appSkeletonTo: '#CCC',
   buttons: {
-    alert: 'E80000',
+    alert: '#E80000',
     alertColor: '#FFF',
     alertHover: '#D80000',
     disabled: '#CCC',
@@ -48,7 +48,7 @@ export const darkTheme: Theme = {
   appSkeletonFrom: '#060B26',
   appSkeletonTo: '#21497D',
   buttons: {
-    alert: 'E80000',
+    alert: '#E80000',
     alertColor: '#FFF',
     alertHover: '#D80000',
     disabled: '#313649',
