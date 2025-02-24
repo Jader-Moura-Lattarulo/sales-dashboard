@@ -7,7 +7,6 @@ import { Container, Grid } from '@mui/material'
 
 //SERVICES
 import { logout } from '@/services'
-import { log } from 'console'
 
 function Profile() {
   const themeContext = useContext(AppThemeContext)
