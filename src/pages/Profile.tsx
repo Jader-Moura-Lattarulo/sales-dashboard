@@ -94,8 +94,8 @@ function Profile() {
       try {
         await profileDeleteData()
         alert('Perfil deletado com sucesso!')
-        //Cookies.remove('Authorization')
-        //window.location.href = '/'
+        Cookies.remove('Authorization')
+        window.location.href = '/'
       } catch (e) {
         alert(
           'Não foi possível realizar a operação. Entre em contato com o nosso suporte'
