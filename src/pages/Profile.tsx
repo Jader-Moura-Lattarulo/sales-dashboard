@@ -1,6 +1,6 @@
 import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { AppThemeContext } from '../contexts/AppThemeContext'
-import Cookies from 'js-cookie'
+import * as Cookies from 'js-cookie'
 
 //COMPONENTS
 import {
@@ -94,7 +94,7 @@ function Profile() {
       try {
         await profileDeleteData()
         alert('Perfil deletado com sucesso!')
-        Cookies.remove('Authorization')
+        Cookies.default.remove('Authorization')
         window.location.href = '/'
       } catch (e) {
         alert(
