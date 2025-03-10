@@ -61,7 +61,7 @@ function Leads() {
   }, [createLeadsData, createLeadsError])
 
   // FORM
-  const inputs: InputProps = [
+  const inputs: InputProps[] = [
     { name: 'name', type: 'text', placeholder: 'Nome', required: true },
     { name: 'email', type: 'email', placeholder: 'Email', required: true },
     { name: 'phone', type: 'tel', placeholder: 'Telefone', required: true },
@@ -110,11 +110,15 @@ function Leads() {
                     <CustomTable
                       headers={['Nome', 'Email', 'Telefone', '']}
                       rows={leadsData.map((lead) => [
-                        <StyledP>{lead.name}</StyledP>,
-                        <StyledP>{lead.email}</StyledP>,
-                        <StyledP>{lead.phone}</StyledP>,
+                        <StyledP key={`name-${lead.id}`}>{lead.name}</StyledP>,
+                        <StyledP key={`email-${lead.id}`}>
+                          {lead.email}
+                        </StyledP>,
+                        <StyledP key={`phone-${lead.id}`}>
+                          {lead.phone}
+                        </StyledP>,
                         <StyledButton
-                          key={lead.id}
+                          key={`btn-${lead.id}`}
                           className="borderless-alert"
                           onClick={() => handleDelete(lead.id)}
                           disabled={leadsDeleteLoading}
@@ -134,7 +138,7 @@ function Leads() {
             <CardComponent>
               <StyledH2 className="mb-1">Cadastrar leads</StyledH2>
               <FormComponent
-                inputs={inputs.map((input, index) => ({
+                inputs={inputs.map((input: InputProps, index: number) => ({
                   ...input,
                   value: formValues[index] || '',
                   onChange: (e: ChangeEvent<HTMLInputElement>) =>
