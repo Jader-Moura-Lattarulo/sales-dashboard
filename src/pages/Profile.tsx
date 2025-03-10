@@ -1,8 +1,8 @@
 import { ChangeEvent, useContext, useEffect, useState } from 'react'
-import { AppThemeContext } from '../contexts/AppThemeContext'
 import Cookies from 'js-cookie'
+import { AppThemeContext } from '../contexts/AppThemeContext'
 
-//COMPONENTS
+// COMPONENTS
 import {
   CardComponent,
   FormComponent,
@@ -12,13 +12,13 @@ import {
 } from '@/components'
 import { Container, Grid } from '@mui/material'
 
-//HOOK
+// HOOKS
 import { useFormValidation, useGet, usePut, useDelete } from '@/hooks'
 
-//SERVICES
+// SERVICES
 import { logout } from '@/services'
 
-//TYPES
+// TYPES
 import {
   InputProps,
   ProfileData,
@@ -29,7 +29,6 @@ import {
 function Profile() {
   const themeContext = useContext(AppThemeContext)
 
-  //HOOKS
   const [updatedMessage, setUpdateMessage] = useState<MessageProps>({
     type: 'success',
     message: '',
@@ -68,7 +67,6 @@ function Profile() {
     }
   }, [profileData])
 
-  //FORM
   const inputs: InputProps[] = [
     { name: 'name', type: 'text', placeholder: 'Nome', required: true },
     { name: 'email', type: 'email', placeholder: 'Email', disabled: true },
