@@ -11,7 +11,7 @@ import {
   StyledP,
 } from '@/components'
 import { useFormValidation, useGet, usePost, useDelete } from '@/hooks'
-import { InputProps, LeadData, LeadsPostData, MessageProps } from '@/types'
+import { InputProps, LeadsData, LeadsPostData, MessageProps } from '@/types'
 
 function Leads() {
   // HOOKS
@@ -20,14 +20,14 @@ function Leads() {
     loading: createLeadsLoading,
     error: createLeadsError,
     postData: createLeadsPostData,
-  } = usePost<LeadData, LeadsPostData>('leads/create', true)
+  } = usePost<LeadsData, LeadsPostData>('leads/create', true)
 
   const {
     data: leadsData,
     loading: leadsLoading,
     error: leadsError,
     getData: getLeads,
-  } = useGet<LeadData[]>('leads')
+  } = useGet<LeadsData[]>('leads')
 
   const { deleteData: leadsDeleteData, loading: leadsDeleteLoading } =
     useDelete('leads/delete')
