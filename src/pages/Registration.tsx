@@ -6,6 +6,7 @@ import {
   FormComponent,
   Logo,
   StyledH1,
+  StyledLink,
   StyledP,
   StyledUl,
   BannerImage,
@@ -146,13 +147,17 @@ function Registration() {
                 buttons={[
                   {
                     className: 'primary',
-                    disabled: email ? !step2FormValid || loading : !step1FormValid,
+                    disabled: email
+                      ? !step2FormValid || loading
+                      : !step1FormValid,
                     onClick: email ? handleStep2 : handleStep1,
                     type: 'submit',
                     children: email ? 'Enviar' : 'Próximo',
                   },
                 ]}
               ></FormComponent>
+              <StyledP>Já possui cadastro?</StyledP>
+              <StyledLink to="/">Clique aqui para fazer o login.</StyledLink>
             </Container>
           </Grid>
           <Grid item sm={6} sx={{ display: { xs: 'none', sm: 'block' } }}>

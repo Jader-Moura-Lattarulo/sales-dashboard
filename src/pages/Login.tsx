@@ -10,6 +10,7 @@ import {
   FormComponent,
   Logo,
   StyledH1,
+  StyledLink,
   StyledP,
 } from '@/components'
 
@@ -120,6 +121,8 @@ function Login() {
                 ]}
                 message={handleMessage()}
               />
+              <StyledP>Não possui uma conta?</StyledP>
+              <StyledLink to="/registration">Cique aqui.</StyledLink>
             </Container>
           </Grid>
 
