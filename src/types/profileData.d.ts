@@ -14,3 +14,11 @@ export interface CreateProfileData {
   password: string
   message?: string | null
 }
+
+export interface CreateProfilePostData {
+  name: string
+  email: string
+  phone: string
+  password: string
+  message?: string | null
+}

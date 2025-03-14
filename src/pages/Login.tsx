@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 import Cookies from 'js-cookie'
 
-//COMPONENTS
+// COMPONENTS
 import { Box, Container, Grid } from '@mui/material'
 import {
   BannerImage,
@@ -14,13 +14,13 @@ import {
   StyledP,
 } from '@/components'
 
-//HOOKS
+// HOOKS
 import { useFormValidation, usePost } from '@/hooks'
 
-//UTILS
+// UTILS
 import { pxToRem, jwtExpirationDateConverter } from '@/utils'
 
-//TYPES
+// TYPES
 import { DecodedJWT, MessageProps, LoginData, LoginPostData } from '@/types'
 
 // REDUX
@@ -29,9 +29,8 @@ import { RootState } from '@/redux'
 
 function Login() {
   const navigate = useNavigate()
-  const { email, message } = useSelector(
-    (state: RootState) => state.createProfile
-  )
+  const { email, message } = useSelector((state: RootState) => state.createProfile)
+  
   const inputs = [
     { type: 'email', placeholder: 'Email' },
     { type: 'password', placeholder: 'Senha' },
@@ -100,7 +99,7 @@ function Login() {
               </Box>
               <Box sx={{ marginBottom: pxToRem(24) }}>
                 <StyledH1>Bem-vindo</StyledH1>
-                <StyledP>Faça login para continuar</StyledP>
+                <StyledP>Faça login para continuar</StyledP>
               </Box>
               <FormComponent
                 inputs={inputs.map((input, index) => ({
@@ -122,7 +121,7 @@ function Login() {
                 message={handleMessage()}
               />
               <StyledP>Não possui uma conta?</StyledP>
-              <StyledLink to="/registration">Cique aqui.</StyledLink>
+              <StyledLink to="/registration">Clique aqui.</StyledLink>
             </Container>
           </Grid>
 

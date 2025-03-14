@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect } from 'react'
+import React, { ChangeEvent, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 // COMPONENTS
@@ -22,10 +22,7 @@ import { RootState } from '@/redux'
 import { setMessage, setProfileData } from '@/redux/slices/createProfile'
 
 // TYPES
-import {
-  InputProps,
-  CreateProfileData,
-} from '@/types'
+import { CreateProfilePostData, InputProps } from '@/types'
 import { pxToRem } from '@/utils'
 
 function Registration() {
@@ -33,14 +30,11 @@ function Registration() {
   const navigate = useNavigate()
   const { email } = useSelector((state: RootState) => state.createProfile)
 
-  const {
-    data,
-    loading,
-    error,
-    postData,
-  } = usePost<string, CreateProfileData>('profile/create')
+  const { data, loading, error, postData } = usePost<string, CreateProfilePostData>(
+    'profile/create'
+  )
 
-  //FORM STEP1
+  // FORM STEP1
   const step1Inputs: InputProps[] = [
     { name: 'name', type: 'text', placeholder: 'Nome', required: true },
     { name: 'email', type: 'email', placeholder: 'Email' },
@@ -62,8 +56,7 @@ function Registration() {
     handleChange: step1FormHandleChange,
   } = useFormValidation(step1Inputs)
 
-  //FORM STEP2
-
+  // FORM STEP2
   const step2Inputs: InputProps[] = [{ type: 'password', placeholder: 'Senha' }]
 
   const handleStep2 = async (e: React.FormEvent) => {
@@ -72,7 +65,7 @@ function Registration() {
       name: String(step1FormValues[0]),
       email: String(step1FormValues[1]),
       phone: String(step1FormValues[2]),
-      password: String(step2FormValues[0],)
+      password: String(step2FormValues[0]),
     })
   }
 
@@ -85,12 +78,13 @@ function Registration() {
   const handleStepInputs = email ? step2Inputs : step1Inputs
 
   useEffect(() => {
-    if (data !==null) {
+    if (data !== null) {
       dispatch(setMessage('Usuário criado com sucesso.'))
       navigate('/')
     } else if (error) {
-
-      alert(`Não foi possível realizar a operação. Entre em contato com nosso suporte (${error}).`)
+      alert(
+        `Não foi possível completar a operação, entre em contato com o nosso suporte. (${error})`
+      )
     }
   }, [data, error, navigate])
 
@@ -108,20 +102,20 @@ function Registration() {
               <Box sx={{ marginBottom: pxToRem(24) }}>
                 <Logo height={41} width={100} />
               </Box>
-              <Box sx={{ marginBottom: pxToRem(24) }}>
+              <Box>
                 <StyledH1>
                   {email ? 'Defina sua senha' : 'Faça seu cadastro'}
                 </StyledH1>
-                <StyledP>
+                <StyledP className="mb-2">
                   {email
                     ? 'Sua senha deve ter:'
-                    : 'Primeiro, diga-nos quem você é.'}{' '}
+                    : 'Primeiro, diga-nos quem você é.'}
                 </StyledP>
                 {email && (
-                  <StyledUl>
+                  <StyledUl className='mb-2'>
                     <li>Entre 8 e 16 caracteres</li>
                     <li>Pelo menos uma letra maiúscula</li>
-                    <li>Pelo menos um caractere especial</li>
+                    <li>Pelo menos um caracter especial</li>
                     <li>Pelo menos um número</li>
                   </StyledUl>
                 )}
@@ -132,7 +126,7 @@ function Registration() {
                   placeholder: input.placeholder,
                   value: email
                     ? step2FormValues[index] || ''
-                    : step1FormValues[index] || '',
+                    : step1FormValues[index],
                   onChange: (e: ChangeEvent<HTMLInputElement>) =>
                     email
                       ? step2FormHandleChange(
@@ -155,11 +149,12 @@ function Registration() {
                     children: email ? 'Enviar' : 'Próximo',
                   },
                 ]}
-              ></FormComponent>
+              />
               <StyledP>Já possui cadastro?</StyledP>
               <StyledLink to="/">Clique aqui para fazer o login.</StyledLink>
             </Container>
           </Grid>
+
           <Grid item sm={6} sx={{ display: { xs: 'none', sm: 'block' } }}>
             <BannerImage />
           </Grid>
