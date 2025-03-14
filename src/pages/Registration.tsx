@@ -2,16 +2,16 @@ import React, { ChangeEvent, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 // COMPONENTS
-import { Box, Container, Grid } from '@mui/material'
 import {
-  BannerImage,
   FormComponent,
   Logo,
   StyledH1,
+  StyledLink,
   StyledP,
   StyledUl,
+  BannerImage,
 } from '@/components'
-import { pxToRem } from '@/utils'
+import { Box, Container, Grid } from '@mui/material'
 
 // HOOKS
 import { useFormValidation, usePost } from '@/hooks'
@@ -23,11 +23,13 @@ import { setMessage, setProfileData } from '@/redux/slices/createProfile'
 
 // TYPES
 import { CreateProfilePostData, InputProps } from '@/types'
+import { pxToRem } from '@/utils'
 
 function Registration() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { email } = useSelector((state: RootState) => state.createProfile)
+
   const { data, loading, error, postData } = usePost<string, CreateProfilePostData>(
     'profile/create'
   )
@@ -51,7 +53,7 @@ function Registration() {
   const {
     formValues: step1FormValues,
     formValid: step1FormValid,
-    handleChange: step1formHandleChange,
+    handleChange: step1FormHandleChange,
   } = useFormValidation(step1Inputs)
 
   // FORM STEP2
@@ -66,10 +68,11 @@ function Registration() {
       password: String(step2FormValues[0]),
     })
   }
+
   const {
     formValues: step2FormValues,
     formValid: step2FormValid,
-    handleChange: step2formHandleChange,
+    handleChange: step2FormHandleChange,
   } = useFormValidation(step2Inputs)
 
   const handleStepInputs = email ? step2Inputs : step1Inputs
@@ -93,13 +96,7 @@ function Registration() {
             item
             xs={12}
             sm={6}
-            sx={{
-              display: {
-                alignItems: 'center',
-                display: 'flex',
-                height: '100vh',
-              },
-            }}
+            sx={{ alignItems: 'center', display: 'flex', height: '100vh' }}
           >
             <Container maxWidth="sm">
               <Box sx={{ marginBottom: pxToRem(24) }}>
@@ -132,11 +129,11 @@ function Registration() {
                     : step1FormValues[index],
                   onChange: (e: ChangeEvent<HTMLInputElement>) =>
                     email
-                      ? step2formHandleChange(
+                      ? step2FormHandleChange(
                           index,
                           (e.target as HTMLInputElement).value
                         )
-                      : step1formHandleChange(
+                      : step1FormHandleChange(
                           index,
                           (e.target as HTMLInputElement).value
                         ),
@@ -153,6 +150,8 @@ function Registration() {
                   },
                 ]}
               />
+              <StyledP>Já possui cadastro?</StyledP>
+              <StyledLink to="/">Clique aqui para fazer o login.</StyledLink>
             </Container>
           </Grid>
 
