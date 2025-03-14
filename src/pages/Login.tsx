@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 import Cookies from 'js-cookie'
 
@@ -10,6 +10,7 @@ import {
   FormComponent,
   Logo,
   StyledH1,
+  StyledLink,
   StyledP,
 } from '@/components'
 
@@ -120,6 +121,8 @@ function Login() {
                 ]}
                 message={handleMessage()}
               />
+              <StyledP>Ainda não possui uma conta?</StyledP>
+              <StyledLink to="/cadastro">Clique aqui.</StyledLink>
             </Container>
           </Grid>
 

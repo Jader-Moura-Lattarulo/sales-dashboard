@@ -6,6 +6,7 @@ import {
   FormComponent,
   Logo,
   StyledH1,
+  StyledLink,
   StyledP,
   StyledUl,
   BannerImage,
@@ -21,10 +22,7 @@ import { RootState } from '@/redux'
 import { setMessage, setProfileData } from '@/redux/slices/createProfile'
 
 // TYPES
-import {
-  InputProps,
-  CreateProfileData,
-} from '@/types'
+import { InputProps, CreateProfileData } from '@/types'
 import { pxToRem } from '@/utils'
 
 function Registration() {
@@ -32,12 +30,9 @@ function Registration() {
   const navigate = useNavigate()
   const { email } = useSelector((state: RootState) => state.createProfile)
 
-  const {
-    data,
-    loading,
-    error,
-    postData,
-  } = usePost<string, CreateProfileData>('profile/create')
+  const { data, loading, error, postData } = usePost<string, CreateProfileData>(
+    'profile/create'
+  )
 
   //FORM STEP1
   const step1Inputs: InputProps[] = [
@@ -71,7 +66,7 @@ function Registration() {
       name: String(step1FormValues[0]),
       email: String(step1FormValues[1]),
       phone: String(step1FormValues[2]),
-      password: String(step2FormValues[0],)
+      password: String(step2FormValues[0]),
     })
   }
 
@@ -84,12 +79,13 @@ function Registration() {
   const handleStepInputs = email ? step2Inputs : step1Inputs
 
   useEffect(() => {
-    if (data !==null) {
+    if (data !== null) {
       dispatch(setMessage('Usuário criado com sucesso.'))
       navigate('/')
     } else if (error) {
-
-      alert(`Não foi possível realizar a operação. Entre em contato com nosso suporte (${error}).`)
+      alert(
+        `Não foi possível realizar a operação. Entre em contato com nosso suporte (${error}).`
+      )
     }
   }, [data, error, navigate])
 
@@ -146,13 +142,17 @@ function Registration() {
                 buttons={[
                   {
                     className: 'primary',
-                    disabled: email ? !step2FormValid || loading : !step1FormValid,
+                    disabled: email
+                      ? !step2FormValid || loading
+                      : !step1FormValid,
                     onClick: email ? handleStep2 : handleStep1,
                     type: 'submit',
                     children: email ? 'Enviar' : 'Próximo',
                   },
                 ]}
               ></FormComponent>
+              <StyledP>Já possui uma conta?</StyledP>
+              <StyledLink to="/">Faça login.</StyledLink>
             </Container>
           </Grid>
           <Grid item sm={6} sx={{ display: { xs: 'none', sm: 'block' } }}>
