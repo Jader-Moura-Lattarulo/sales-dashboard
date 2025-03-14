@@ -121,7 +121,7 @@ function Login() {
                 message={handleMessage()}
               />
               <StyledP>Não possui uma conta?</StyledP>
-              <StyledLink to="/registration">Clique aqui.</StyledLink>
+              <StyledLink to="/cadastro">Clique aqui.</StyledLink>
             </Container>
           </Grid>
 
