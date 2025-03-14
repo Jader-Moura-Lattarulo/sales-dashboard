@@ -7,7 +7,7 @@ export interface ProfileData extends ProfileEditableData {
   email: string
 }
 
-export interface CreateProfilePostData {
+export interface CreateProfileData {
   name: string
   email: string
   phone: string
